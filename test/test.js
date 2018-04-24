@@ -2,7 +2,7 @@ let majesty = require('majesty')
 let urlParser = require('../index.js')
 
 function exec(describe, it, beforeEach, afterEach, expect, should, assert) {
-    describe("Testes de parse e math de urls", function () {
+    describe("Testes de parse e math de urls como objeto", function () {
         let urlRules;
 
         it("Deve parsear urls com sucesso", function () {
@@ -18,6 +18,25 @@ function exec(describe, it, beforeEach, afterEach, expect, should, assert) {
                 {url: '/app/posts', expected: false},
                 {url: '/app/produtos/cadastrar', expected: true},
                 {url: '/app/produtos/deletar', expected: true},
+                {url: '/app/posts/10/comments', expected: true}
+            ].forEach(function (testInfo) {
+                var actual = urlParser.urlMatches(urlRules, testInfo.url);
+                expect(actual).to.equals(testInfo.expected);
+            })
+        });
+    });
+
+    describe("Testes de parse e math de urls como array", function () {
+        let urlRules;
+
+        it("Deve parsear urls com sucesso", function () {
+            urlRules = urlParser.buildUrlRules(['/app/produtos/*', '/app/posts/:id/comments']);
+        });
+
+        it("Deve realizar os matches com sucesso", function () {
+            [
+                {url: '/app/posts', expected: false},
+                {url: '/app/produtos/cadastrar', expected: true},
                 {url: '/app/posts/10/comments', expected: true}
             ].forEach(function (testInfo) {
                 var actual = urlParser.urlMatches(urlRules, testInfo.url);

@@ -32,15 +32,15 @@ console.log(urlParser.urlMatches(urlRules, '/app/posts/10/comments'))
 
 ```javascript
 /**
-* Parseia um objeto com várias urls setadas como chave deste objeto.
+* Parseia um objeto ou array com várias urls.
 * Então é retornado um objeto com as rules aplicadas a cada url, que então
 * serão usadas para realizar o match de uma URL.
-* Os valores de cada objeto são armazenados na propriedade 'data',
-* para futura utilização caso necessário.
-* @param {Object} urls - Objeto que contém as urls como atributo e quaisquer valores
+* Caso o argumento seja uma URL, os valores de cada objeto são armazenados na propriedade 'data', para futura utilização caso necessário.
+* @param {Object | Array} urls - Objeto ou array que contém as urls como atributo e quaisquer valores
 * @example
 * @file startup.js
 * @code
+* urlParser.buildUrlRules(["/app/produtos/cadastrar", "/app/produtos/*"])
 * urlParser.buildUrlRules({
     "/app/produtos/cadastrar": ["user"],
     "/app/produtos/*": ["admin"],

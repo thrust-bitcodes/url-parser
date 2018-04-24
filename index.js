@@ -10,10 +10,15 @@ let REPLACE_RULES = [
 ];
 
 function sortByLength(urls) {
-	return Object.keys(urls)
-		.sort(function (a, b) {
-			return a.length < b.length;
-		});
+	let sortFn = function (a, b) {
+		return a.length < b.length;
+	};
+
+	if (urls.constructor.name === 'Array') {
+		return urls.sort(sortFn);
+	} else {
+		return Object.keys(urls).sort(sortFn);
+	}
 }
 
 function buildUrlRegex(url) {
@@ -41,12 +46,19 @@ function buildUrlRegex(url) {
 })
 */
 function buildUrlRules(urls) {
+	var urlsIsObject = urls.constructor.name == 'Object';
+
 	return sortByLength(urls).map(function (url) {
-		return {
+		var urlRule = {
 			url: url,
-			data: urls[url],
 			urlRegex: new RegExp(buildUrlRegex(url), 'g')
 		};
+
+		if (urlsIsObject) {
+			urlRule.data = urls[url];
+		}
+		
+		return urlRule;
 	});
 }
 
