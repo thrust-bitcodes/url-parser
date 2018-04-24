@@ -30,11 +30,12 @@ function exec(describe, it, beforeEach, afterEach, expect, should, assert) {
         let urlRules;
 
         it("Deve parsear urls com sucesso", function () {
-            urlRules = urlParser.buildUrlRules(['/app/produtos/*', '/app/posts/:id/comments']);
+            urlRules = urlParser.buildUrlRules(['/', '/app/produtos/*', '/app/posts/:id/comments']);
         });
 
         it("Deve realizar os matches com sucesso", function () {
             [
+                {url: '/', expected: true},
                 {url: '/app/posts', expected: false},
                 {url: '/app/produtos/cadastrar', expected: true},
                 {url: '/app/posts/10/comments', expected: true}

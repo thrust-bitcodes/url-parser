@@ -1,5 +1,9 @@
 let REPLACE_RULES = [
 	{
+		regex: [/^\/$/], //Trata url '/', que só pode fazer match com '/'
+		replace: '^\/$'
+	},
+	{
 		regex: [/(\:\w+)/g, /\*/g], //Trata urls com :parametro e *
 		replace: '.+'
 	},
