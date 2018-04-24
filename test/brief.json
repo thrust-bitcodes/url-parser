@@ -1,0 +1,6 @@
+{
+  "description": "Testes do url-parser",
+  "name": "url-parser-test",
+  "author": "Bruno Machado",
+  "dependencies": ["thrust-bitcodes/majesty"]
+}
