@@ -3,6 +3,11 @@ url-parser
 
 url-parser é um *bitcode* de parse e matches de url.
 
+Atualmente o processador aceita urls do tipo:
+ - /public
+ - /public/*
+ - /secure/posts/:id
+
 # Instalação
 
 Posicionado em um app [thrust](https://github.com/thrustjs/thrust), no seu terminal:
@@ -50,9 +55,8 @@ console.log(urlParser.urlMatches(urlRules, '/app/posts/10/comments'))
 buildUrlRules(urls)
 
 /**
-* Utilizado para realizar o match de uma URL com base em uma URL passada
+* Utilizado para validar o match de uma URL com base em uma URL passada
 * e as regras de url, retornadas pelo método 'buildUrlRules'.
-* A ultima função é 
 * @param {Object} urlRules - Objeto retornado pelo método 'buildUrlRules'
 * @param {String} url - URL a ser testada
 * @param {Function} acceptMatch - Função que pode ser passada para fazer uma verificação adicional.
@@ -62,7 +66,21 @@ buildUrlRules(urls)
 * urlParser.urlMatches(urlRules, '/app/posts/10/comments', function(urlRule) {
 	return true;
   });
-})
 */
 urlMatches(urlRules, url, acceptMatch)
+
+/**
+* Utilizado para realizar retornar o match de uma URL com base em uma URL passada
+* e as regras de url, retornadas pelo método 'buildUrlRules'.
+* @param {Object} urlRules - Objeto retornado pelo método 'buildUrlRules'
+* @param {String} url - URL a ser testada
+* @param {Function} acceptMatch - Função que pode ser passada para fazer uma verificação adicional.
+* @example
+* @file startup.js
+* @code
+* urlParser.macthUrl(urlRules, '/app/posts/10/comments', function(urlRule) {
+	return true;
+  });
+*/
+function macthUrl(urlRules, url, acceptMatch)
 ```

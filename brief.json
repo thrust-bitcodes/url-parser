@@ -2,6 +2,6 @@
   "description": "Módulo de parseamento e match de URLs",
   "name": "url-parser",
   "path": "index.js",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "author": "Bruno Machado"
 }
